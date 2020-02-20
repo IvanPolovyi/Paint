@@ -126,7 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   empty: {fileID: 4453433912628361854, guid: 4e5b43eda4931114a9bd29cef903e912, type: 3}
-  thisEmpty: {fileID: 0}
 --- !u!1001 &1437935705590407165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -223,6 +222,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WhiteBulb with Leg
+      objectReference: {fileID: 0}
+    - target: {fileID: 8524495652754476166, guid: 241a97181fe604546bd3d0ce2650d45e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 241a97181fe604546bd3d0ce2650d45e, type: 3}

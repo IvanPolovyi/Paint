@@ -1,6 +1,7 @@
 ﻿//using System;
 using System.Collections;
 using System.Collections.Generic;
+using PreFabs.Enemies.Spider;
 using UnityEngine;    
 
 public class Enemy : MonoBehaviour
@@ -39,11 +40,8 @@ public class Enemy : MonoBehaviour
         {
             
             Instantiate(deathEffect, transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(-180,180)));
-
             moveVel = 0;
-            
             Destroy(transform.parent.gameObject);
-            
             Camera.main.GetComponent<RipplePostProcessor>().RippleEffect(gameObject.transform.position);
         }
         
@@ -85,7 +83,7 @@ public class Enemy : MonoBehaviour
     {
         {
           //  rb.MovePosition((Vector2) transform.position + (moveVel * Time.deltaTime * direction));
-            transform.position += moveVel * Time.deltaTime * direction;
+            transform.localPosition += moveVel * Time.deltaTime * direction;
         }
     }
 

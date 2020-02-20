@@ -1,12 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Anchor : MonoBehaviour
+namespace PreFabs.Enemies.Spider
 {
-
-    void Update()
+    public class Anchor : MonoBehaviour
     {
-        transform.position += Vector3.up*0.1f;
+
+        void Update()
+        {
+            transform.position += Vector3.up*0.1f;
+        }
     }
 }

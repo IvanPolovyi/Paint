@@ -1,9 +1,10 @@
 ﻿using System;
+using PreFabs.Enemies;
 using UnityEngine;
 
 public class AreaCollider : MonoBehaviour
 {
-    public ChasePlaer[] enemies;
+    public ChasePlayer[] enemies;
     private Collider2D col;
     private ContactFilter2D filter;
     void Start()
@@ -24,7 +25,7 @@ public class AreaCollider : MonoBehaviour
             {
                 if (enemy != null)
                 {
-                    enemy.Chase(other.transform, ChasePlaer.State.Chase);
+                    enemy.Chase(other.transform, ChasePlayer.State.Chase);
                 }
             }
         }

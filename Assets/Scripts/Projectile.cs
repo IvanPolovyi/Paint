@@ -5,11 +5,11 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float speed;
-    public float lifeTime;
+    public float lifeTime=1;
     public GameObject destroyEffect;
     public float distance;
     public LayerMask whatIsSolid;
-    public int damage;
+    public int damage=1;
     private void Start()
     {
         Invoke("DestroyProjectile", lifeTime);
@@ -26,8 +26,18 @@ public class Projectile : MonoBehaviour
                 hitInfo.collider.gameObject.GetComponent<Enemy>().takeDamage(damage);
                 DestroyProjectile();
             }
+            else if (hitInfo.collider.CompareTag("EnemyOrange"))
+            {
+                hitInfo.collider.gameObject.GetComponent<EnemyOrange>().takeDamage(damage);
+                DestroyProjectile();
+            }
             else if (hitInfo.collider.CompareTag("Environment"))
             {
+                DestroyProjectile();
+            }
+            else if (hitInfo.collider.CompareTag("Player"))
+            {
+                hitInfo.collider.gameObject.GetComponent<PlayerMove>().health--;
                 DestroyProjectile();
             }
         }
@@ -36,6 +46,7 @@ public class Projectile : MonoBehaviour
     private void DestroyProjectile()
     {
         Instantiate(destroyEffect, transform.position, Quaternion.identity);
+        
         Destroy(gameObject);
     }
 

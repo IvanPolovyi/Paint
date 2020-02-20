@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Pathfinding;
-using Unity.UNetWeaver;
+﻿using Pathfinding;
 using UnityEngine;
 
-public class ChasePlaer : MonoBehaviour
+
+public class ChasePlayer : MonoBehaviour
 {
     private AIPath aiPath;
     private AIDestinationSetter aiDestinationSetter;
     private State state;
 
     public GameObject empty;
-    public GameObject thisEmpty;
+    private GameObject thisEmpty;
+
 
     void Start()
     {
         aiPath = gameObject.GetComponent<AIPath>();
         aiDestinationSetter = gameObject.GetComponent<AIDestinationSetter>();
-
-
         thisEmpty = Instantiate(empty, transform.position, Quaternion.identity);
     }
 
@@ -29,7 +25,7 @@ public class ChasePlaer : MonoBehaviour
         Chase,
         GoBack,
     }
-    
+
     void Update()
     {
 
@@ -43,7 +39,7 @@ public class ChasePlaer : MonoBehaviour
 
     public void InvokeRetreat(float time)
     {
-       Invoke(nameof(Retreat),time);
+        Invoke(nameof(Retreat),time);
     }
 
     private void Retreat()
@@ -51,3 +47,4 @@ public class ChasePlaer : MonoBehaviour
         aiDestinationSetter.target = thisEmpty.transform;
     } 
 }
+
