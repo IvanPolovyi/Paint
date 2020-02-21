@@ -9,8 +9,8 @@ public class PlayerMove : MonoBehaviour
 {
     public Animator animator;
     public float moveVel;
-
-    public int health=5;
+    public float timeBetweenDamage=1;
+    public int health=10;
     public Slider healthBar;
 
     
@@ -39,11 +39,24 @@ public class PlayerMove : MonoBehaviour
         {
            
         }
+        timeSinceLastDamage += Time.deltaTime;
     }
 
     private void Dash()
     {
         transform.position += 1000 * Time.deltaTime * movement;
+    }
+
+    private float timeSinceLastDamage;
+    public void TakeDamage(int damage)
+    {
+        
+        if (timeSinceLastDamage >= timeBetweenDamage)
+        {
+            animator.SetTrigger("TakeDamage");
+            health -= damage;
+            timeSinceLastDamage = 0;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -54,10 +67,6 @@ public class PlayerMove : MonoBehaviour
             other.gameObject.GetComponent<PaintVial>().OnDestroy();
         }
 
-        else if (other.CompareTag("Enemy"))
-        {
-            health--;
-        }
     }
     
 }

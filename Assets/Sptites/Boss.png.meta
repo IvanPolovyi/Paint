@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 9fc85de195ff1e4478d75d0a61af3032
+guid: f25e744e488d32c4da44a3d9ebd2b0c9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 21300000
-    second: Splash_0
+      213: -6248741079362886434
+    second: Boss_0
   - first:
-      213: 21300002
-    second: Splash_1
+      213: 2287940250583960180
+    second: Boss_1
   - first:
-      213: 21300004
-    second: Splash_2
+      213: 4935984790844978548
+    second: Boss_2
   - first:
-      213: 21300006
-    second: Splash_3
+      213: -1341004319433955295
+    second: Boss_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -43,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -81,7 +81,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -93,7 +93,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
@@ -105,90 +105,90 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Splash_0
+      name: Boss_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1698
-        width: 638
-        height: 552
-      alignment: 9
-      pivot: {x: 0.46386096, y: 0.5238681}
+        x: 185
+        y: 819
+        width: 168
+        height: 316
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ed769919c60857438d1bf86c516aa04
-      internalID: 21300000
+      spriteID: ed42f2778130849a0800000000000000
+      internalID: -6248741079362886434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Splash_1
+      name: Boss_1
       rect:
         serializedVersion: 2
-        x: 708
-        y: 1179
-        width: 1489
-        height: 1068
-      alignment: 9
-      pivot: {x: 0.51769674, y: 0.48149538}
+        x: 593
+        y: 831
+        width: 135
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb4f19209638e284a864290f0fbcdad9
-      internalID: 21300002
+      spriteID: 47a006f298560cf10800000000000000
+      internalID: 2287940250583960180
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Splash_2
+      name: Boss_2
       rect:
         serializedVersion: 2
-        x: 1660
-        y: 69
-        width: 1453
-        height: 1183
-      alignment: 9
-      pivot: {x: 0.5, y: 0.49164706}
+        x: 159
+        y: 458
+        width: 665
+        height: 315
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1ed529a0c5ddbf41bd3a524eb4bb9c3
-      internalID: 21300004
+      spriteID: 475bb0be304208440800000000000000
+      internalID: 4935984790844978548
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Splash_3
+      name: Boss_3
       rect:
         serializedVersion: 2
-        x: 13
-        y: 244
-        width: 1397
-        height: 1057
-      alignment: 9
-      pivot: {x: 0.17934296, y: 0.12917377}
+        x: 103
+        y: 63
+        width: 825
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c70de11b8675ba2409e0df1d3cf54b99
-      internalID: 21300006
+      spriteID: 128efd92dabc36de0800000000000000
+      internalID: -1341004319433955295
       vertices: []
       indices: 
       edges: []
@@ -196,7 +196,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1a7b347d5004339429f6ce6c6e49b4b2
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

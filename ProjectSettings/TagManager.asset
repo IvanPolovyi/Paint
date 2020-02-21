@@ -9,6 +9,9 @@ TagManager:
   - PaintVial
   - Panel
   - Environment
+  - Empty
+  - EnemyOrange
+  - CyanEnemy
   layers:
   - Default
   - TransparentFX

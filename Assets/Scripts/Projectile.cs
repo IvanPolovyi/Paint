@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour
             }
             else if (hitInfo.collider.CompareTag("Player"))
             {
-                hitInfo.collider.gameObject.GetComponent<PlayerMove>().health--;
+                hitInfo.collider.gameObject.GetComponent<PlayerMove>().TakeDamage(damage);
                 DestroyProjectile();
             }
         }
