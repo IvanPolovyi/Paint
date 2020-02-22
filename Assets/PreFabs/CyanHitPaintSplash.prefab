@@ -115,8 +115,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 3
-      minScalar: 1
+      scalar: 2
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -168,8 +168,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 5
+      scalar: 5
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -225,8 +225,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0, g: 0.12045857, b: 0.6981132, a: 1}
-        key1: {r: 0.508366, g: 0.6710064, b: 0.9056604, a: 1}
+        key0: {r: 0, g: 0.6981132, b: 0.6786076, a: 1}
+        key1: {r: 0.4669811, g: 1, b: 0.9619645, a: 1}
         key2: {r: 1, g: 1, b: 1, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -254,8 +254,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
-        key0: {r: 0, g: 0.006594114, b: 0.4339623, a: 1}
-        key1: {r: 0.5037438, g: 0.3915094, b: 1, a: 1}
+        key0: {r: 0.28702387, g: 0.80105287, b: 0.8113208, a: 1}
+        key1: {r: 0.7122642, g: 1, b: 0.9908947, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -284,8 +284,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.2
-      minScalar: 0.1
+      scalar: 0.15
+      minScalar: 0.07
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3941,7 +3941,7 @@ ParticleSystem:
     lifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3998,7 +3998,7 @@ ParticleSystem:
     worldSpace: 0
     dieWithParticles: 1
     sizeAffectsWidth: 1
-    sizeAffectsLifetime: 1
+    sizeAffectsLifetime: 0
     inheritParticleColor: 1
     generateLightingData: 0
     splitSubEmitterRibbons: 0
@@ -4824,7 +4824,7 @@ GameObject:
   - component: {fileID: 8035793916210470712}
   - component: {fileID: 3858579999046548869}
   m_Layer: 0
-  m_Name: BluePaintSplash
+  m_Name: CyanHitPaintSplash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4863,7 +4863,7 @@ MonoBehaviour:
   - {fileID: 6741472508202974363, guid: dfe1bd0120f0df84a82f1c368a01e99a, type: 3}
   - {fileID: 2054121883796032587, guid: 76c4d03014d1d284ea8dda57fadae6c0, type: 3}
   - {fileID: 885675755125469416, guid: 38b4bd9ed61b62343b33eaae8949b957, type: 3}
-  color: 2
+  color: 0
 --- !u!82 &3858579999046548869
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4876,17 +4876,17 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f329858e11b08744b906d0137eda9a55, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.847
-  m_Pitch: 1
+  m_Volume: 1
+  m_Pitch: 0.71
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 89
+  Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 6.6263185
   MaxDistance: 500
-  Pan2D: 0
+  Pan2D: 0.17
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0

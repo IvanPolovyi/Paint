@@ -12,7 +12,7 @@ public class Splash : MonoBehaviour
 
     public enum Colors
     {
-        Red,
+        Cyan,
         Orange,
         Blue,
         Green
@@ -35,6 +35,9 @@ public class Splash : MonoBehaviour
                 break;
             case Colors.Orange:
                 c = new Color(1f,Random.Range(0.0f,0.5f),Random.Range(0.0f,0.3f));
+                break;
+            case Colors.Cyan:
+                c = new Color(0.0f,Random.Range(0.7f,1f),Random.Range(0.7f,1f));
                 break;
             default:
                 c = new Color(0,0,0);

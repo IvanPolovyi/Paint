@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 public class CyanEnemy : MonoBehaviour
 {
-
+    public Animator animator;
     public Transform target;
     public LayerMask whatIsPlayer;
     public int health;
@@ -19,16 +19,20 @@ public class CyanEnemy : MonoBehaviour
     private ChasePlayer chasePlayer;
     public GameObject deathEffect;
     private RipplePostProcessor camRipple;
-    public float dashSpeed = 100f;
-    private Vector2 direction;
-    private bool collided=true;
+    public float dashSpeed = 10;
+    private Vector3 direction;
+    public int damage = 1;
+
     private bool dash;
+    private Vector3 curDir = Vector3.zero;
+    public GameObject dushSplash;
     void Start()
     {
         path = gameObject.GetComponentInParent<AIPath>();
         setter = gameObject.GetComponentInParent<AIDestinationSetter>();
         chasePlayer  = gameObject.GetComponentInParent<ChasePlayer>();
         setter.target = chasePlayer.empty.transform;
+        CDTime = dashRate * 0.8f;
     }
 
     // Update is called once per frame
@@ -38,35 +42,55 @@ public class CyanEnemy : MonoBehaviour
         
 
         direction = (target.transform.position - transform.position).normalized;
-        
-        Vector2 curDir = Vector2.zero;
-        if (!dash)
+        if (dash==false)
             curDir = direction;
+        
         Debug.DrawRay(transform.position,curDir , Color.red, 0.1f);
         if (hit2D.collider != null)
         {
-            if(setter.target == this.target
-               && !hit2D.collider.gameObject.CompareTag("Player"))
+            if (setter.target == this.target
+                && !hit2D.collider.gameObject.CompareTag("Player"))
             {
                 path.canSearch = true;
             }
-            
+
             _timeSinceLastDash += Time.deltaTime;
+            thisCDTime += Time.deltaTime;
             if (_timeSinceLastDash >= dashRate
                 && hit2D.collider.gameObject.CompareTag("Player")
-                && collided)
+            )
             {
-                path.canSearch = false;
-                collided = false;
                 _timeSinceLastDash = 0;
                 dash = true;
+                path.canMove = false;
             }
 
             if (dash)
             {
-                transform.position = curDir * dashSpeed * Time.deltaTime;
+                path.canSearch = false;
+                transform.parent.transform.position += curDir * dashSpeed * Time.deltaTime;
+                
+                /*RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, (target.position - transform.position), 5f,
+                    whatIsPlayer);
+                if (hitInfo.collider != null)
+                {
+                    if (hitInfo.collider.gameObject.CompareTag("Player"))
+                    {
+                        dash = false;
+                        Instantiate(dushSplash, transform.position, Quaternion.identity);
+                        TakeDamage(1);
+                    }
+                    else if (hitInfo.collider.gameObject.CompareTag("Environment"))
+                    {
+                        dash = false;
+                        Instantiate(dushSplash, transform.position, Quaternion.identity);
+                        TakeDamage(1);
+                    }
+                }*/
             }
         }
+
+
         if (health <= 0)
         {
             Instantiate(deathEffect, transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(-180,180)));
@@ -76,9 +100,41 @@ public class CyanEnemy : MonoBehaviour
         
     }
     
-
     private void OnCollisionEnter2D(Collision2D other)
     {
-        dash = false;
+        if(!dash) return;
+        
+        if(other.gameObject.CompareTag("Player"))
+        {
+            dash = false;
+            FinishDash();
+            other.gameObject.GetComponent<PlayerMove>().TakeDamage(damage);
+        }
+        else if(other.gameObject.CompareTag("Environment")
+        ||other.gameObject.CompareTag("Enemy"))
+        {
+            dash = false;
+            FinishDash();
+        }
+    }
+
+    private float CDTime;
+    private float thisCDTime;
+    private void FinishDash()
+    {
+        path.canMove = true;
+        if (thisCDTime >= CDTime)
+        {
+            Instantiate(dushSplash, transform.position, Quaternion.identity);
+            TakeDamage(damage);
+            thisCDTime = 0;
+        }
+    }
+    
+
+    public void TakeDamage(int damage)
+    {
+        animator.SetTrigger("TakeDamage");
+        health -= damage;
     }
 }

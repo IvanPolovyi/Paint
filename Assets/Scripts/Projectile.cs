@@ -31,6 +31,11 @@ public class Projectile : MonoBehaviour
                 hitInfo.collider.gameObject.GetComponent<EnemyOrange>().takeDamage(damage);
                 DestroyProjectile();
             }
+            else if (hitInfo.collider.CompareTag("EnemyOrange"))
+            {
+                hitInfo.collider.gameObject.GetComponent<CyanEnemy>().TakeDamage(damage);
+                DestroyProjectile();
+            }
             else if (hitInfo.collider.CompareTag("Environment"))
             {
                 DestroyProjectile();
