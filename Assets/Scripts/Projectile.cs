@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
                 hitInfo.collider.gameObject.GetComponent<EnemyOrange>().takeDamage(damage);
                 DestroyProjectile();
             }
-            else if (hitInfo.collider.CompareTag("EnemyOrange"))
+            else if (hitInfo.collider.CompareTag("CyanEnemy"))
             {
                 hitInfo.collider.gameObject.GetComponent<CyanEnemy>().TakeDamage(damage);
                 DestroyProjectile();
@@ -45,6 +45,17 @@ public class Projectile : MonoBehaviour
                 hitInfo.collider.gameObject.GetComponent<PlayerMove>().TakeDamage(damage);
                 DestroyProjectile();
             }
+            else if (hitInfo.collider.CompareTag("Boss"))
+            {
+                hitInfo.collider.gameObject.GetComponent<Boss>().TakeDamage(damage);
+                DestroyProjectile();
+            }
+            else if(hitInfo.collider.CompareTag("CyanBoss"))
+            {
+                hitInfo.collider.gameObject.GetComponent<CyanBoss>().TakeDamage(damage);
+                DestroyProjectile();
+            }
+            
         }
     }
 

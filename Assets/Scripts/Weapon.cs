@@ -22,6 +22,7 @@ public class Weapon : MonoBehaviour
 
     private float timeBtwShots;
     private float rotZ;
+    public bool paused;
 
     private void Start()
     {
@@ -30,6 +31,8 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
+        if(paused) return;
+        
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);

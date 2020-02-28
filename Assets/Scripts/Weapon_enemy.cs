@@ -8,7 +8,7 @@ public class Weapon_enemy : MonoBehaviour
     public float offset;
     public GameObject projectile;
     public Transform shotPoint;
-    public Transform target;
+    private Transform target;
     public LayerMask whatIsPlayer;
     private float timeBtwShots;
     private float rotZ;
@@ -18,16 +18,22 @@ public class Weapon_enemy : MonoBehaviour
     private AIDestinationSetter setter;
     private ChasePlayer chasePlayer;
 
+
     private void Start()
     {
         path = gameObject.GetComponentInParent<AIPath>();
         setter = gameObject.GetComponentInParent<AIDestinationSetter>();
         chasePlayer  = gameObject.GetComponentInParent<ChasePlayer>();
         setter.target = chasePlayer.empty.transform;
+        target = GameObject.FindWithTag("Player").transform;
+
+
     }
 
     private void Update()
     {
+
+        
         Vector3 difference = target.position - transform.position;
         rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);

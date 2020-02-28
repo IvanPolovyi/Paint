@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 72678315}
   - component: {fileID: 72678316}
   - component: {fileID: 72678319}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cyan
   m_TagString: CyanEnemy
   m_Icon: {fileID: 0}
@@ -155,7 +155,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 72678315}
-  target: {fileID: 0}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 2560
@@ -206,7 +205,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -4
   m_Time: 1
   m_Parameters:
     serializedVersion: 3
@@ -296,7 +295,7 @@ GameObject:
   - component: {fileID: 3457234856345504298}
   - component: {fileID: 3457234856345504292}
   - component: {fileID: 4238680397836246075}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CyanBulb PF
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,6 +12,8 @@ TagManager:
   - Empty
   - EnemyOrange
   - CyanEnemy
+  - Boss
+  - CyanBoss
   layers:
   - Default
   - TransparentFX

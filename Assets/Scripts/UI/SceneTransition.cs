@@ -9,49 +9,11 @@ public class SceneTransition : MonoBehaviour
 {
 
     public Animator animator;
-    public string sceneName;
-    public Button startButton;
-    public Button exitButton;
-    public Button menuButton;
 
-    private void Start()
-    {
-        
-        if(menuButton != null) menuButton.onClick.AddListener(MenuButtonPressed);
-        
-        if(startButton != null) startButton.onClick.AddListener(StartButtonPressed);
-        
-        if(exitButton != null) exitButton.onClick.AddListener(ExitButtonPressed);
-        
-    }
-
-    private void MenuButtonPressed()
-    {
-        StartCoroutine(LoadScene());
-    }
-    private void StartButtonPressed()
-    {
-        StartCoroutine(LoadScene());
-    }
-    
-    private static void ExitButtonPressed()
-    {
-        Application.Quit();
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(LoadScene());
-        }
-        
-    }
-
-    IEnumerator LoadScene()
+    public IEnumerator LoadScene(String sceneName, float waitTime=1f, String trigger = "end")
     {
         animator.SetTrigger("end");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(waitTime);
         SceneManager.LoadScene(sceneName);
     }
 }

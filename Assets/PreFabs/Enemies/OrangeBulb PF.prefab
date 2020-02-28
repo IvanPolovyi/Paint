@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &6527591920784382355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5926537149102568442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b30e5b91bea19464796604fd6d41348f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5926537149102568437}
+  health: 3
+  deathEffect: {fileID: 6240787779504182413, guid: 404d84929e6d87446be06b34c71856a2,
+    type: 3}
 --- !u!1 &6527591919312988103
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,6 +63,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -99,23 +116,10 @@ MonoBehaviour:
     type: 3}
   shotPoint: {fileID: 6527591921036491664}
   target: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 2560
   shootRate: 2
---- !u!114 &6527591920784382355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5926537149102568442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b30e5b91bea19464796604fd6d41348f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 5926537149102568437}
-  health: 3
-  deathEffect: {fileID: 6240787779504182413, guid: 404d84929e6d87446be06b34c71856a2,
-    type: 3}
 --- !u!1 &6527591921036491667
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>().transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
        
     }
@@ -89,6 +89,7 @@ public class Enemy : MonoBehaviour
 
     public void takeDamage(int damage)
     {
+        animator.SetTrigger("TakeDamage");
         health -= damage;
     }
 

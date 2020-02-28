@@ -15,7 +15,7 @@ public class MenuPaintSplatter : MonoBehaviour
 
     private void StartClicked()
     {
-        animator.SetTrigger("StartClicked");
+         animator.SetTrigger("StartClicked");
     }
     
     void Update()

@@ -30,6 +30,7 @@ public class EnemyOrange : MonoBehaviour
 
     public void takeDamage(int damage)
     {
+        animator.SetTrigger("TakeDamage");    
         health -= damage;
     }
 }

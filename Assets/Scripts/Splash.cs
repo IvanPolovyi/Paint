@@ -30,6 +30,9 @@ public class Splash : MonoBehaviour
         float rand = Random.Range(0.0f, 0.15f);
         switch (color)
         {
+            case Colors.Green:
+                c = new Color(Random.Range(0.03f,0.15f),Random.Range(0.8f,1f),Random.Range(0.03f,0.15f));
+                break;
             case Colors.Blue:
                 c = new Color(rand,rand,Random.Range(0.5f,1.0f));
                 break;

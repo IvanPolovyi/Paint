@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
+﻿
 using UnityEngine;
-using UnityEngine.UI;
+
+using Random = UnityEngine.Random;
+using Slider = UnityEngine.UI.Slider;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -12,42 +11,95 @@ public class PlayerMove : MonoBehaviour
     public float timeBetweenDamage=1;
     public int health=10;
     public Slider healthBar;
+    public float dashTime = 0.2f;
+    public float timeBetweenDash=3f;
+    public float dashVel=70;
+    public LayerMask whatIsWall;
+    public Animator cameraAnimator;
+    public SceneTransition transition;
 
+    private float timeSinceLastDamage;
+    private float timeSinceLastDash;
     
     private Weapon weapon;
-    private static readonly int Horizontal = Animator.StringToHash("Horizontal");
-    private static readonly int Vertical = Animator.StringToHash("Vertical");
-    private static readonly int Magnitude = Animator.StringToHash("Magnitude");
-    private Vector3 movement; 
+    private Vector2 movement;
+    private bool dashing;
+    private float thisDashTime;
+    private Rigidbody2D rb;
+    private Vector2 dashMovement = Vector2.zero;
+    public float castDist = 2f;
+    private TrailRenderer trails;
+    public bool paused;
     
     private void Start()
     {
         weapon = gameObject.GetComponentInChildren<Weapon>();
-//        dash.onClick.AddListener(Dash);
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        trails = gameObject.GetComponent<TrailRenderer>();
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
+        if(paused) return;
+        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        rb.position += moveVel * Time.deltaTime * movement;
 
-        movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical") , 0.0f);
-        transform.position += moveVel * Time.deltaTime * movement;
+   
+        timeSinceLastDash += Time.deltaTime;
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (timeSinceLastDash >= timeBetweenDash && !dashing)
+            {
+                dashMovement = movement;
+                dashing = true;
+                timeSinceLastDash = 0;
+                thisDashTime = dashTime;
+                int r = Random.Range(0, 3);
+                
+                if(r == 0)
+                    cameraAnimator.SetTrigger("Shake1");
+                if(r == 1)
+                    cameraAnimator.SetTrigger("Shake2");
+                if(r == 2)
+                    cameraAnimator.SetTrigger("Shake3");
+            }
+        }
 
+        if (timeSinceLastDash >= timeBetweenDash)
+        {
+            trails.enabled = false;
+        }
+        else
+        {
+            trails.enabled = true;
+        }
 
+        if (dashing)
+        {
+            rb.position += dashVel * Time.deltaTime * dashMovement;
+            thisDashTime -= Time.deltaTime;
+            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, dashMovement, castDist, whatIsWall);
+            Debug.DrawRay(transform.position, movement*castDist, Color.cyan, 1f);
+            if (hit2D.collider != null && hit2D.collider.gameObject.CompareTag("Environment"))
+            {
+                dashing = false;
+            }
+        }
+
+        if (dashing && thisDashTime <= 0)
+        {
+            dashing = false;
+        }
+        
         healthBar.value = health;
         if (health <= 0)
         {
-           
+            StartCoroutine(transition.LoadScene("YouDead", 1f));
         }
         timeSinceLastDamage += Time.deltaTime;
     }
 
-    private void Dash()
-    {
-        transform.position += 1000 * Time.deltaTime * movement;
-    }
-
-    private float timeSinceLastDamage;
     public void TakeDamage(int damage)
     {
         
@@ -59,11 +111,16 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        dashing = false;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("PaintVial"))
         {
-            weapon.setPaintReserve(20);
+            weapon.setPaintReserve(30);
             other.gameObject.GetComponent<PaintVial>().OnDestroy();
         }
 

@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class CyanEnemy : MonoBehaviour
 {
     public Animator animator;
-    public Transform target;
+    private Transform target;
     public LayerMask whatIsPlayer;
     public int health;
     private float _timeSinceLastDash;
@@ -33,6 +33,7 @@ public class CyanEnemy : MonoBehaviour
         chasePlayer  = gameObject.GetComponentInParent<ChasePlayer>();
         setter.target = chasePlayer.empty.transform;
         CDTime = dashRate * 0.8f;
+        target = GameObject.FindWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -69,24 +70,6 @@ public class CyanEnemy : MonoBehaviour
             {
                 path.canSearch = false;
                 transform.parent.transform.position += curDir * dashSpeed * Time.deltaTime;
-                
-                /*RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, (target.position - transform.position), 5f,
-                    whatIsPlayer);
-                if (hitInfo.collider != null)
-                {
-                    if (hitInfo.collider.gameObject.CompareTag("Player"))
-                    {
-                        dash = false;
-                        Instantiate(dushSplash, transform.position, Quaternion.identity);
-                        TakeDamage(1);
-                    }
-                    else if (hitInfo.collider.gameObject.CompareTag("Environment"))
-                    {
-                        dash = false;
-                        Instantiate(dushSplash, transform.position, Quaternion.identity);
-                        TakeDamage(1);
-                    }
-                }*/
             }
         }
 
