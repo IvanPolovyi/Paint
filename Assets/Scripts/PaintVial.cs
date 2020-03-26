@@ -8,7 +8,6 @@ public class PaintVial : MonoBehaviour
     public AudioClip sound;
     public void OnDestroy()
     {
-        
         Destroy(gameObject);
     }
 }

@@ -10,7 +10,7 @@ public class Menu : MonoBehaviour
     public GameObject UIImage;
     public GameObject resBut;
     public GameObject MMbut;
-    public PlayerMove pl;
+    public PlayerStatus pl;
     public Weapon wp;
 
     private Color c;
@@ -33,8 +33,8 @@ public class Menu : MonoBehaviour
     public void MenuBut()
     {
         Time.timeScale = 0;
-        pl.paused = true;
-        wp.paused = true;
+        pl.isPaused = true;
+        wp.isPaused = true;
         UIImage.SetActive(true);
         resBut.SetActive(true);
         MMbut.SetActive(true);
@@ -43,8 +43,8 @@ public class Menu : MonoBehaviour
     public void ResumeBut()
     {
         Time.timeScale = 1f;
-        pl.paused = false;
-        wp.paused = false;    
+        pl.isPaused = false;
+        wp.isPaused = false;    
         UIImage.SetActive(false);
         resBut.SetActive(false);
         MMbut.SetActive(false);

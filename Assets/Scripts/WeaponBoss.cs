@@ -7,34 +7,34 @@ public class WeaponBoss : MonoBehaviour
     public float offset;
     public GameObject projectile;
     public Transform shotPoint;
-    private Transform target;
-    public LayerMask whatIsPlayer;
-    private float timeBtwShots;
-    private float rotZ;
-    private float _timeSinceLastShoot;
     public float shootRate = 2f;
-    private Boss self;
+    public LayerMask whatIsSolid;
+    
+    private Transform _target;
+    private float _timeBtwShots;
+    private float _rotZ;
+    private float _timeSinceLastShoot;
+    private GreenBoss _self;
 
     private void Start()
     {
-        target = GameObject.FindWithTag("Player").transform;
-        self = transform.parent.gameObject.GetComponent<Boss>();
+        _target = GameObject.FindWithTag("Player").transform;
+        _self = transform.parent.gameObject.GetComponent<GreenBoss>();
     }
 
     private void Update()
     {
-        if (self.dead) return;
+        if (_self.dead) return;
         
-        Vector3 difference = target.position - transform.position;
-        rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
+        Vector3 difference = _target.position - transform.position;
+        _rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, _rotZ + offset);
         _timeSinceLastShoot += Time.deltaTime;
         
-        RaycastHit2D hit2D = Physics2D.Raycast(transform.position, ( target.position - transform.position), 200f, whatIsPlayer);
+        RaycastHit2D hit2D = Physics2D.Raycast(transform.position, ( _target.position - transform.position), 200f, whatIsSolid);
         if (hit2D.collider != null)
         {
-            if (_timeSinceLastShoot >= shootRate
-                && hit2D.collider.gameObject.CompareTag("Player"))
+            if (_timeSinceLastShoot >= shootRate && hit2D.collider.gameObject.CompareTag("Player"))
             {
                 _timeSinceLastShoot = 0;
                 Shoot();
@@ -44,8 +44,8 @@ public class WeaponBoss : MonoBehaviour
 
     private void Shoot()
     {
-        Instantiate(projectile, shotPoint.position, Quaternion.Euler(0f, 0f, rotZ + offset-15f));
-        Instantiate(projectile, shotPoint.position, Quaternion.Euler(0f, 0f, rotZ + offset));
-        Instantiate(projectile, shotPoint.position, Quaternion.Euler(0f, 0f, rotZ + offset+15f));
+        Instantiate(projectile, shotPoint.position, Quaternion.Euler(0f, 0f, _rotZ + offset-15f));
+        Instantiate(projectile, shotPoint.position, Quaternion.Euler(0f, 0f, _rotZ + offset));
+        Instantiate(projectile, shotPoint.position, Quaternion.Euler(0f, 0f, _rotZ + offset+15f));
     }
 }

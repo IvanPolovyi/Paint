@@ -23,46 +23,15 @@ public class Projectile : MonoBehaviour
         {
             if (hitInfo.collider.CompareTag("Enemy"))
             {
-                hitInfo.collider.gameObject.GetComponent<Enemy>().takeDamage(damage);
+                hitInfo.collider.gameObject.GetComponent<IDamagable>().TakeDamage(damage);
                 DestroyProjectile();
             }
-            else if (hitInfo.collider.CompareTag("EnemyOrange"))
-            {
-                hitInfo.collider.gameObject.GetComponent<EnemyOrange>().takeDamage(damage);
-                DestroyProjectile();
-            }
-            else if (hitInfo.collider.CompareTag("CyanEnemy"))
-            {
-                hitInfo.collider.gameObject.GetComponent<CyanEnemy>().TakeDamage(damage);
-                DestroyProjectile();
-            }
-            else if (hitInfo.collider.CompareTag("Environment"))
-            {
-                DestroyProjectile();
-            }
-            else if (hitInfo.collider.CompareTag("Player"))
-            {
-                hitInfo.collider.gameObject.GetComponent<PlayerMove>().TakeDamage(damage);
-                DestroyProjectile();
-            }
-            else if (hitInfo.collider.CompareTag("Boss"))
-            {
-                hitInfo.collider.gameObject.GetComponent<Boss>().TakeDamage(damage);
-                DestroyProjectile();
-            }
-            else if(hitInfo.collider.CompareTag("CyanBoss"))
-            {
-                hitInfo.collider.gameObject.GetComponent<CyanBoss>().TakeDamage(damage);
-                DestroyProjectile();
-            }
-            
         }
     }
 
     private void DestroyProjectile()
     {
         Instantiate(destroyEffect, transform.position, Quaternion.identity);
-        
         Destroy(gameObject);
     }
 

@@ -1,22 +1,20 @@
 ﻿using Pathfinding;
 using UnityEngine;
-
-
 public class ChasePlayer : MonoBehaviour
 {
-    private AIPath aiPath;
-    private AIDestinationSetter aiDestinationSetter;
-    private State state;
+    private AIPath _aiPath;
+    private AIDestinationSetter _aiDestinationSetter;
+    private State _state;
 
     public GameObject empty;
-    private GameObject thisEmpty;
+    private GameObject _thisEmpty;
 
 
     void Start()
     {
-        aiPath = gameObject.GetComponent<AIPath>();
-        aiDestinationSetter = gameObject.GetComponent<AIDestinationSetter>();
-        thisEmpty = Instantiate(empty, transform.position, Quaternion.identity);
+        _aiPath = gameObject.GetComponent<AIPath>();
+        _aiDestinationSetter = gameObject.GetComponent<AIDestinationSetter>();
+        _thisEmpty = Instantiate(empty, transform.position, Quaternion.identity);
     }
 
     public enum State 
@@ -26,15 +24,9 @@ public class ChasePlayer : MonoBehaviour
         GoBack,
     }
 
-    void Update()
-    {
-
-
-    }
-
     public void Chase(Transform other, State newState)
     {
-        aiDestinationSetter.target = other;
+        _aiDestinationSetter.target = other;
     }
 
     public void InvokeRetreat(float time)
@@ -44,7 +36,7 @@ public class ChasePlayer : MonoBehaviour
 
     private void Retreat()
     {
-        aiDestinationSetter.target = thisEmpty.transform;
+        _aiDestinationSetter.target = _thisEmpty.transform;
     } 
 }
 

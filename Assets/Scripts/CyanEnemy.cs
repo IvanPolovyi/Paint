@@ -6,53 +6,53 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-public class CyanEnemy : MonoBehaviour
+public class CyanEnemy : MonoBehaviour, IDamagable
 {
     public Animator animator;
-    private Transform target;
     public LayerMask whatIsPlayer;
     public int health;
-    private float _timeSinceLastDash;
     public float dashRate = 1f;
-    private AIPath path;
-    private AIDestinationSetter setter;
-    private ChasePlayer chasePlayer;
-    public GameObject deathEffect;
-    private RipplePostProcessor camRipple;
     public float dashSpeed = 10;
-    private Vector3 direction;
     public int damage = 1;
-
-    private bool dash;
-    private Vector3 curDir = Vector3.zero;
     public GameObject dushSplash;
+    public GameObject deathEffect;
+
+    private AIPath _path;
+    private AIDestinationSetter _setter;
+    private ChasePlayer _chasePlayer;
+    private RipplePostProcessor _camRipple;
+    private Vector3 _direction;
+    private Transform _target;
+    private float _timeSinceLastDash;
+    private bool _dash;
+    private Vector3 _curDir = Vector3.zero;
     void Start()
     {
-        path = gameObject.GetComponentInParent<AIPath>();
-        setter = gameObject.GetComponentInParent<AIDestinationSetter>();
-        chasePlayer  = gameObject.GetComponentInParent<ChasePlayer>();
-        setter.target = chasePlayer.empty.transform;
+        _path = gameObject.GetComponentInParent<AIPath>();
+        _setter = gameObject.GetComponentInParent<AIDestinationSetter>();
+        _chasePlayer  = gameObject.GetComponentInParent<ChasePlayer>();
+        _setter.target = _chasePlayer.empty.transform;
         CDTime = dashRate * 0.8f;
-        target = GameObject.FindWithTag("Player").transform;
+        _target = GameObject.FindWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit2D = Physics2D.Raycast(transform.position, ( target.position - transform.position), 200f, whatIsPlayer);
+        RaycastHit2D hit2D = Physics2D.Raycast(transform.position, ( _target.position - transform.position), 200f, whatIsPlayer);
         
 
-        direction = (target.transform.position - transform.position).normalized;
-        if (dash==false)
-            curDir = direction;
+        _direction = (_target.transform.position - transform.position).normalized;
+        if (_dash==false)
+            _curDir = _direction;
         
-        Debug.DrawRay(transform.position,curDir , Color.red, 0.1f);
+        Debug.DrawRay(transform.position,_curDir , Color.red, 0.1f);
         if (hit2D.collider != null)
         {
-            if (setter.target == this.target
+            if (_setter.target == _target
                 && !hit2D.collider.gameObject.CompareTag("Player"))
             {
-                path.canSearch = true;
+                _path.canSearch = true;
             }
 
             _timeSinceLastDash += Time.deltaTime;
@@ -62,14 +62,14 @@ public class CyanEnemy : MonoBehaviour
             )
             {
                 _timeSinceLastDash = 0;
-                dash = true;
-                path.canMove = false;
+                _dash = true;
+                _path.canMove = false;
             }
 
-            if (dash)
+            if (_dash)
             {
-                path.canSearch = false;
-                transform.parent.transform.position += curDir * dashSpeed * Time.deltaTime;
+                _path.canSearch = false;
+                transform.parent.transform.position += _curDir * dashSpeed * Time.deltaTime;
             }
         }
 
@@ -85,18 +85,18 @@ public class CyanEnemy : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(!dash) return;
+        if(!_dash) return;
         
         if(other.gameObject.CompareTag("Player"))
         {
-            dash = false;
+            _dash = false;
             FinishDash();
-            other.gameObject.GetComponent<PlayerMove>().TakeDamage(damage);
+            other.gameObject.GetComponent<PlayerStatus>().TakeDamage(damage);
         }
         else if(other.gameObject.CompareTag("Environment")
         ||other.gameObject.CompareTag("Enemy"))
         {
-            dash = false;
+            _dash = false;
             FinishDash();
         }
     }
@@ -105,7 +105,7 @@ public class CyanEnemy : MonoBehaviour
     private float thisCDTime;
     private void FinishDash()
     {
-        path.canMove = true;
+        _path.canMove = true;
         if (thisCDTime >= CDTime)
         {
             Instantiate(dushSplash, transform.position, Quaternion.identity);

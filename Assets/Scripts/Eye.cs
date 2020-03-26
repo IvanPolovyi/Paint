@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Eye : MonoBehaviour
 {
-    private Vector2 movement;
+    private Vector2 _movement;
     void Update()
     {
-        
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        transform.position = (Vector2) difference;
+        transform.position =  difference;
     }
 }

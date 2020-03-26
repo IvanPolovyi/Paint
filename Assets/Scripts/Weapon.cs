@@ -15,27 +15,21 @@ public class Weapon : MonoBehaviour
     public Slider paintReserveBar;
     public Button button;
     public Joystick joystick;
-    public float startTimeBtwShots;
 
-    private GameObject target;
+
+    private GameObject _target;
     public int paintReserve;
-
-    private float timeBtwShots;
-    private float rotZ;
-    public bool paused;
-
-    private void Start()
-    {
-       
-    }
-
+    
+    private float _rotZ;
+    public bool isPaused;
+    
     private void Update()
     {
-        if(paused) return;
+        if(isPaused) return;
         
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
+        _rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, _rotZ + offset);
         
         if (Input.GetMouseButtonDown(0))
         {
@@ -47,13 +41,12 @@ public class Weapon : MonoBehaviour
 
     private void Shoot()
     {
-        if(paintReserve<=0) return;
-        Instantiate(projectile, shotPoint.position, Quaternion.Euler(0f, 0f, rotZ + offset));
-            timeBtwShots = startTimeBtwShots;
-            paintReserve--;
+        if(paintReserve <= 0) return;
+        Instantiate(projectile, shotPoint.position, Quaternion.Euler(0f, 0f, _rotZ + offset));
+        paintReserve--;
     }
 
-    public void setPaintReserve(int reserve)
+    public void SetPaintReserve(int reserve)
     {
         paintReserve += reserve;
     }
